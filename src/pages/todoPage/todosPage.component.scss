@@ -1,0 +1,22 @@
+section {
+  height: 100%;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: grey;
+
+  h1 {
+    color: coral;
+    font-size: 30px
+  }
+}
+
+.wrapper__todo-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
