@@ -1,21 +1,31 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+import { AsyncPipe, NgForOf } from "@angular/common";
 
 import { TodoPageComponent } from "src/pages/todoPage/todoPage.component";
-import { TodosHeaderComponent } from "src/components/todos/todosHeader/todosHeader.component";
-import { FormsModule } from "@angular/forms";
+import { TodoLayoutComponent } from "src/components/todos/todoLayout/todoLayout.component";
+import { TodoHeaderComponent } from "src/components/todos/todoHeader/todoHeader.component";
+import { TodoListComponent } from "src/components/todos/todoList/todoList.component";
 
 const routes: Routes = [
   {
-    path: 'todos',
+    path: 'todo',
     component: TodoPageComponent,
   }
 ];
 @NgModule({
-  declarations: [TodoPageComponent, TodosHeaderComponent],
+  declarations: [
+    TodoPageComponent,
+    TodoLayoutComponent,
+    TodoHeaderComponent,
+    TodoListComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    AsyncPipe,
+    NgForOf,
   ]
 })
 export class TodoPageModule {}

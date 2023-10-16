@@ -1,0 +1,10 @@
+<div class="header__todos">
+  <input
+    name="todoInput"
+    id="todoInput"
+    [(ngModel)]="todoInput"
+    autofocus
+    placeholder="What needs to be done?"
+    (keyup.enter)="addTodo()"
+  />
+</div>
