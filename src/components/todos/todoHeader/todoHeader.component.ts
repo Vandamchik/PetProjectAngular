@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 
 import { TodosService } from 'src/pages/todoPage/todoPage.service';
 
@@ -7,13 +7,23 @@ import { TodosService } from 'src/pages/todoPage/todoPage.service';
   templateUrl: 'todoHeader.component.html',
   styleUrls: ['todoHeader.component.scss']
 })
-export class TodoHeaderComponent {
+export class TodoHeaderComponent implements OnInit, OnDestroy {
   todoInput: string = "";
+  isNotEmpty: boolean;
 
-  constructor(private todoService: TodosService) {}
+  constructor(private todosService: TodosService) {
+  }
 
   addTodo(): void {
-    this.todoService.addToTodo(this.todoInput);
+    this.todosService.addToTodo(this.todoInput);
     this.todoInput = '';
+  }
+
+  ngOnInit() {
+    this.todosService.isNotEmpty$.subscribe(data => this.isNotEmpty = data)
+  }
+
+  ngOnDestroy() {
+    this.todosService.isNotEmpty$.unsubscribe()
   }
 }

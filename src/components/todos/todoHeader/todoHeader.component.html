@@ -1,7 +1,15 @@
 <div class="header__todos">
+    <input
+      *ngIf="isNotEmpty"
+      name="todoToggle"
+      id="todoToggle"
+      type="checkbox"
+      class="input__checkbox"
+    />
   <input
     name="todoInput"
     id="todoInput"
+    class="input__todos"
     [(ngModel)]="todoInput"
     autofocus
     placeholder="What needs to be done?"
