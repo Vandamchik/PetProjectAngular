@@ -1,14 +1,23 @@
 .header__todos {
+  height: 40px;
   margin: 10px;
   display: flex;
   justify-content: center;
-
-  input {
-    width: 300px;
-    height: 20px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-    outline: none;
-  }
+  align-items: center;
+  background-color: whitesmoke;
 }
+
+.input__todos {
+  width: 300px;
+  height: 20px;
+  border: none;
+  padding: 5px;
+  background-color: inherit;
+  outline: none;
+}
+
+.input__checkbox {
+  height: 40px;
+  width: 30px;
+}
+

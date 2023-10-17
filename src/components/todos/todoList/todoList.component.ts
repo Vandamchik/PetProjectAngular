@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { combineLatest, map, Observable } from "rxjs";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { combineLatest, map, Observable} from "rxjs";
 
 import { ITodo, TTodoStatus } from 'src/pages/todoPage/todoPage.types';
 import { TodosService } from "src/pages/todoPage/todoPage.service";
@@ -10,13 +10,17 @@ import { TodosService } from "src/pages/todoPage/todoPage.service";
   templateUrl: 'todoList.component.html',
   styleUrls: ['todoList.component.scss']
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit, OnDestroy {
   allTodos$: Observable<ITodo[]>;
+  isNotEmpty: boolean | void;
 
-  constructor(private todosService: TodosService) {
+  constructor(private todosService: TodosService) {}
+
+  ngOnInit() {
+    this.todosService.isNotEmpty$.subscribe(status => this.isNotEmpty = status);
     this.allTodos$ = combineLatest(
       this.todosService.todos$,
-      this.todosService.filterTodos$
+      this.todosService.filterTodos$,
     ).pipe(map(([todos, filter]: [ITodo[], TTodoStatus]) => {
       if(filter === 'active') {
         return todos.filter(todo => !todo.isCompleted)
@@ -25,5 +29,9 @@ export class TodoListComponent {
       }
       return todos;
     }))
+  }
+
+  ngOnDestroy() {
+    this.todosService.isNotEmpty$.unsubscribe();
   }
 }

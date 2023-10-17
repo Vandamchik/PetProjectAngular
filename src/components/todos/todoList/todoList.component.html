@@ -1,5 +1,6 @@
-<ul class="container__todo-list">
-  <li *ngFor="let todo of allTodos$ | async">
-    {{ todo.text }}
-  </li>
+<ul class="container__todo-list" *ngIf="isNotEmpty">
+  <app-todo-item
+    *ngFor="let todo of allTodos$ | async"
+    [todoProps]="todo"
+  ></app-todo-item>
 </ul>
